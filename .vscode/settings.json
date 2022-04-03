@@ -1,0 +1,7 @@
+{
+    "php.validate.enable": true,
+    "docker-linter.php.enable": true,
+    "docker-linter.php.container": "php-fpm",
+    "docker-linter.php.machine": "",
+    "php.validate.executablePath": "/usr/bin/php"
+}
