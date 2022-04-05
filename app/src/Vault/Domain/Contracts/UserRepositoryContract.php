@@ -12,7 +12,7 @@ interface UserRepositoryContract
 
     public function list(): array;
 
-    public function create(User $user): User;
+    public function create(User $user): bool;
 
     public function update(User $user): bool;
 

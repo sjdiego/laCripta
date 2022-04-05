@@ -32,6 +32,8 @@ final class CreateUserUseCase
             new UserLastUse(new \DateTimeImmutable())
         );
 
-        return $this->userRepository->create($user);
+        $this->userRepository->create($user);
+
+        return $user;
     }
 }

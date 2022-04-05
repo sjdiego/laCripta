@@ -5,28 +5,31 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Factory\JsonResponseFactory;
-use App\Vault\Application\FindUserUseCase;
+use App\Vault\Application\ListUserUseCase;
+use App\Vault\Domain\User;
 use App\Vault\Infrastructure\Repositories\MariaDbUserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\{Request, Response};
 use Doctrine\DBAL\Connection;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
-class FindUserController extends AbstractController
+class ListUserController extends AbstractController
 {
     public function __construct(
         private JsonResponseFactory $jsonResponseFactory
     ) {
     }
 
-    public function __invoke(Connection $connection, Request $request, string $uuid): Response
+    public function __invoke(Connection $connection): Response
     {
         try {
             $userRepository = new MariaDbUserRepository($connection);
-            $findUser = new FindUserUseCase($userRepository);
-            $user = $findUser($uuid);
+            $listUsers = new ListUserUseCase($userRepository);
 
             return $this->jsonResponseFactory->create([
-                'user' => $user->toArray()
+                'users' => array_map(
+                    fn (User $user) => $user->toArray(),
+                    $listUsers()
+                ),
             ]);
         } catch (\Exception $e) {
             return $this->jsonResponseFactory->create(

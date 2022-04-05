@@ -11,6 +11,7 @@ use App\Vault\Infrastructure\Repositories\MariaDbUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\Uid\Uuid;
+use Doctrine\DBAL\Connection;
 
 class CreateUserController extends AbstractController
 {
@@ -18,10 +19,10 @@ class CreateUserController extends AbstractController
     {
     }
 
-    public function __invoke(Request $request): Response
+    public function __invoke(Connection $connection, Request $request): Response
     {
         $createUser = new CreateUserUseCase(
-            new MariaDbUserRepository(),
+            new MariaDbUserRepository($connection),
             new PasswordDefaultHashing()
         );
 
@@ -35,7 +36,12 @@ class CreateUserController extends AbstractController
 
             return $this->jsonResponseFactory->create(['user' => $user->toArray()]);
         } catch (\Exception $e) {
-            return $this->jsonResponseFactory->create(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->jsonResponseFactory->create(
+                [
+                    'error' => $e->getMessage()
+                ],
+                Response::HTTP_INTERNAL_SERVER_ERROR
+            );
         }
     }
 }
