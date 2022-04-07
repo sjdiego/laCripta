@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
 use App\Domains\Vault\Domain\User;
 use App\Domains\Vault\Domain\Contracts\UserRepositoryContract;
-use App\Domains\Vault\Infrastructure\Repositories\Enums\UserDbColumns;
+use App\Domains\Vault\Infrastructure\Repositories\Enums\User as UserEnum;
 use App\Domains\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
 
 /**
@@ -39,12 +39,12 @@ final class MariaDbUserRepository implements UserRepositoryContract
         }
 
         return new User(
-            new UserUUID($data[UserDbColumns::UUID]),
-            new UserName($data[UserDbColumns::NAME]),
-            new UserEmail($data[UserDbColumns::EMAIL]),
-            new UserPassword($data[UserDbColumns::PASSWORD]),
-            new UserCreatedAt(new DateTimeImmutable($data[UserDbColumns::CREATED_AT])),
-            new UserLastUse(new DateTimeImmutable($data[UserDbColumns::LAST_USE]))
+            new UserUUID($data[UserEnum::UUID]),
+            new UserName($data[UserEnum::NAME]),
+            new UserEmail($data[UserEnum::EMAIL]),
+            new UserPassword($data[UserEnum::PASSWORD]),
+            new UserCreatedAt(new DateTimeImmutable($data[UserEnum::CREATED_AT])),
+            new UserLastUse(new DateTimeImmutable($data[UserEnum::LAST_USE]))
         );
     }
 
@@ -61,12 +61,12 @@ final class MariaDbUserRepository implements UserRepositoryContract
 
         foreach ($data as $user) {
             $results[] = [
-                'uuid' => $user[UserDbColumns::UUID],
-                'name' => $user[UserDbColumns::NAME],
-                'email' => $user[UserDbColumns::EMAIL],
-                'password' => $user[UserDbColumns::PASSWORD],
-                'createdAt' => $user[UserDbColumns::CREATED_AT],
-                'lastUse' => $user[UserDbColumns::LAST_USE]
+                'uuid' => $user[UserEnum::UUID],
+                'name' => $user[UserEnum::NAME],
+                'email' => $user[UserEnum::EMAIL],
+                'password' => $user[UserEnum::PASSWORD],
+                'createdAt' => $user[UserEnum::CREATED_AT],
+                'lastUse' => $user[UserEnum::LAST_USE]
             ];
         }
 
@@ -83,12 +83,12 @@ final class MariaDbUserRepository implements UserRepositoryContract
     {
         return $this->connection->transactional(function () use ($user): bool {
             return 1 === $this->connection->insert('users', [
-                UserDbColumns::UUID       => $user->getName()->value(),
-                UserDbColumns::NAME       => $user->getEmail()->value(),
-                UserDbColumns::EMAIL      => $user->getPassword()->value(),
-                UserDbColumns::PASSWORD   => $user->getCreatedAt()->value()->format('Y-m-d H:i:s'),
-                UserDbColumns::CREATED_AT => $user->getLastUse()->value()->format('Y-m-d H:i:s'),
-                UserDbColumns::LAST_USE   => $user->getUUID()->value(),
+                UserEnum::UUID       => $user->getName()->value(),
+                UserEnum::NAME       => $user->getEmail()->value(),
+                UserEnum::EMAIL      => $user->getPassword()->value(),
+                UserEnum::PASSWORD   => $user->getCreatedAt()->value()->format('Y-m-d H:i:s'),
+                UserEnum::CREATED_AT => $user->getLastUse()->value()->format('Y-m-d H:i:s'),
+                UserEnum::LAST_USE   => $user->getUUID()->value(),
             ]);
         });
     }

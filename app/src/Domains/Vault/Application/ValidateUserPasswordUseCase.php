@@ -12,7 +12,7 @@ use App\Domains\Vault\Domain\Exceptions\{PasswordPatternException, PasswordTooSh
 final class ValidateUserPasswordUseCase
 {
     const MIN_LENGTH = 8;
-    const PASSWORD_PATTERN = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/';
+    const PASSWORD_PATTERN = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/';
 
     public function __invoke(string $password): bool
     {

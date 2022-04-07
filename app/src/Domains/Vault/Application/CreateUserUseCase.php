@@ -27,9 +27,6 @@ final class CreateUserUseCase
      */
     public function __invoke(string $uuid, string $name, string $email, string $password): User
     {
-        $passwordValidator = new ValidateUserPasswordUseCase();
-        $passwordValidator($password);
-
         $hashedPassword = $this->passwordHashing->hash($password);
 
         $user = new User(

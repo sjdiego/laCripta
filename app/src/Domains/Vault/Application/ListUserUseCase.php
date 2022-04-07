@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Application;
+namespace App\Domains\Vault\Application;
 
-use App\Vault\Domain\Contracts\UserRepositoryContract;
-use App\Vault\Domain\User;
-use App\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
+use App\Domains\Vault\Domain\Contracts\UserRepositoryContract;
+use App\Domains\Vault\Domain\User;
+use App\Domains\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
 use DateTimeImmutable;
 
 final class ListUserUseCase

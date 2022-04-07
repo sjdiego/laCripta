@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domains\Vault\Domain\ValueObjects;
 
+use App\Domains\Vault\Domain\Exceptions\UserNameException;
+
 final class UserName
 {
     const NAME_PATTERN = '/^[a-zA-Z][a-zA-Z0-9]{2,19}$/';
@@ -11,7 +13,7 @@ final class UserName
     public function __construct(private string $name)
     {
         if (!$this->validate($name)) {
-            throw new \InvalidArgumentException('Invalid name');
+            throw new UserNameException;
         }
     }
 

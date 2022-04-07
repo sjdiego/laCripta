@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\Vault\Infrastructure\Repositories\Enums;
 
-enum UserDbColumns: string
+enum User: string
 {
     case UUID = 'uuid';
     case NAME = 'name';
