@@ -37,6 +37,8 @@ jobs:
       run: |
         cp .env.test .env
         composer install --prefer-dist --no-progress
+      env:
+        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
     # Docs: https://getcomposer.org/doc/articles/scripts.md
