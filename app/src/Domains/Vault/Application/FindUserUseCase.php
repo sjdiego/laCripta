@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Application;
+namespace App\Domains\Vault\Application;
 
-use App\Vault\Domain\Contracts\UserRepositoryContract;
-use App\Vault\Domain\User;
+use App\Domains\Vault\Domain\Contracts\UserRepositoryContract;
+use App\Domains\Vault\Domain\User;
 
 final class FindUserUseCase
 {
@@ -13,6 +13,12 @@ final class FindUserUseCase
     {
     }
 
+    /**
+     * It returns an user.
+     *
+     * @param string $uuid
+     * @return User
+     */
     public function __invoke(string $uuid): User
     {
         return $this->userRepository->find($uuid);

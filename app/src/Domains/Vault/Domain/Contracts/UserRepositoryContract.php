@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Domain\Contracts;
+namespace App\Domains\Vault\Domain\Contracts;
 
-use App\Vault\Domain\User;
+use App\Domains\Vault\Domain\User;
 
 interface UserRepositoryContract
 {

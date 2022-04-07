@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Application;
+namespace App\Domains\Vault\Application;
 
-use App\Vault\Domain\Contracts\{UserRepositoryContract, PasswordHashingContract};
-use App\Vault\Domain\User;
-use App\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
+use App\Domains\Vault\Domain\Contracts\{UserRepositoryContract, PasswordHashingContract};
+use App\Domains\Vault\Domain\User;
+use App\Domains\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
 
 final class CreateUserUseCase
 {
@@ -16,6 +16,15 @@ final class CreateUserUseCase
     ) {
     }
 
+    /**
+     * It creates a new user.
+     *
+     * @param string $uuid
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     * @return User
+     */
     public function __invoke(string $uuid, string $name, string $email, string $password): User
     {
         $passwordValidator = new ValidateUserPasswordUseCase();

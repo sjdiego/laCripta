@@ -15,6 +15,11 @@ final class ListUserUseCase
     {
     }
 
+    /**
+     * It returns a list of users.
+     *
+     * @return array<User>
+     */
     public function __invoke(): array
     {
         $users = [];

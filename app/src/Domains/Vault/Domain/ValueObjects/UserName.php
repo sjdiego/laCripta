@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Domain\ValueObjects;
+namespace App\Domains\Vault\Domain\ValueObjects;
 
 final class UserName
 {

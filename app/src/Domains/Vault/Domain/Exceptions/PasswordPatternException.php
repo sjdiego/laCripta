@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Domain\Exceptions;
+namespace App\Domains\Vault\Domain\Exceptions;
 
 class PasswordPatternException extends \Exception
 {

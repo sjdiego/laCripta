@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Infrastructure\Hashing;
+namespace App\Domains\Vault\Infrastructure\Hashing;
 
-use App\Vault\Domain\Contracts\PasswordHashingContract;
+use App\Domains\Vault\Domain\Contracts\PasswordHashingContract;
 
 final class PasswordDefaultHashing implements PasswordHashingContract
 {

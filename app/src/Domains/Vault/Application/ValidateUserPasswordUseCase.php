@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Application;
+namespace App\Domains\Vault\Application;
 
-use App\Vault\Exceptions\{PasswordPatternException, PasswordTooShortException};
+use App\Domains\Vault\Domain\Exceptions\{PasswordPatternException, PasswordTooShortException};
 
 /**
  * Class which manages password validation rules.

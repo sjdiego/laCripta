@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Factory\JsonResponseFactory;
-use App\Vault\Application\ListUserUseCase;
-use App\Vault\Domain\User;
-use App\Vault\Infrastructure\Repositories\MariaDbUserRepository;
+use App\Domains\Vault\Application\ListUserUseCase;
+use App\Domains\Vault\Domain\User;
+use App\Domains\Vault\Infrastructure\Repositories\MariaDbUserRepository;
 use Doctrine\DBAL\Connection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;

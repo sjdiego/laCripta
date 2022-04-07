@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Vault\Domain;
+namespace App\Domains\Vault\Domain;
 
-use App\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
+use App\Domains\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
 
 final class User
 {

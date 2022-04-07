@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Factory\JsonResponseFactory;
-use App\Vault\Application\CreateUserUseCase;
-use App\Vault\Infrastructure\Hashing\PasswordDefaultHashing;
-use App\Vault\Infrastructure\Repositories\MariaDbUserRepository;
+use App\Domains\Vault\Application\CreateUserUseCase;
+use App\Domains\Vault\Infrastructure\Hashing\PasswordDefaultHashing;
+use App\Domains\Vault\Infrastructure\Repositories\MariaDbUserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\{Request, Response};
 use Symfony\Component\Uid\Uuid;
