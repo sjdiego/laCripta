@@ -39,7 +39,9 @@ jobs:
     - name: Check Symfony requirements
       run: vendor/bin/requirements-checker
     - name: Check the Symfony console
-      run: bin/console -V
+      run: |
+        cp .env.test .env
+        bin/console -V
     - name: Create Database
       run: |
         mkdir -p data
