@@ -6,7 +6,7 @@ namespace App\Domains\Vault\Domain;
 
 use App\Domains\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPassword, UserCreatedAt, UserLastUse};
 
-final class User
+class User
 {
     public function __construct(
         private UserUUID $uuid,
