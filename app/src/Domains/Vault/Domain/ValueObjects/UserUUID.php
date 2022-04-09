@@ -19,7 +19,7 @@ final class UserUUID
 
     public function value(): string
     {
-        return $this->userUUID;
+        return $this->uuid;
     }
 
     /**
