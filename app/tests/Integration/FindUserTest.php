@@ -86,12 +86,12 @@ final class FindUserTest extends TestCase
 
     public function test_user_service_does_not_find_missing_uuid_in_repository(): void
     {
-        $this->expectException(UUIDPatternException::class);
+        $this->expectException(\Exception::class);
 
         $this->userRepository
             ->expects($this->any())
             ->method('find')
-            ->will($this->throwException(new UUIDPatternException));
+            ->will($this->throwException(new \Exception));
 
         $findUserService = new FindUserUseCase(
             $this->userRepository,
