@@ -14,7 +14,7 @@ use App\Domains\Vault\Domain\ValueObjects\{UserUUID, UserName, UserEmail, UserPa
 /**
  * Class that manages the persistence of the User entity into MariaDB.
  */
-final class MariaDbUserRepository implements UserRepositoryContract
+class MariaDbUserRepository implements UserRepositoryContract
 {
     public function __construct(Connection $connection)
     {
@@ -39,12 +39,12 @@ final class MariaDbUserRepository implements UserRepositoryContract
         }
 
         return new User(
-            new UserUUID($data[UserEnum::UUID]),
-            new UserName($data[UserEnum::NAME]),
-            new UserEmail($data[UserEnum::EMAIL]),
-            new UserPassword($data[UserEnum::PASSWORD]),
-            new UserCreatedAt(new DateTimeImmutable($data[UserEnum::CREATED_AT])),
-            new UserLastUse(new DateTimeImmutable($data[UserEnum::LAST_USE]))
+            new UserUUID($data[UserEnum::UUID->value]),
+            new UserName($data[UserEnum::NAME->value]),
+            new UserEmail($data[UserEnum::EMAIL->value]),
+            new UserPassword($data[UserEnum::PASSWORD->value]),
+            new UserCreatedAt(new DateTimeImmutable($data[UserEnum::CREATED_AT->value])),
+            new UserLastUse(new DateTimeImmutable($data[UserEnum::LAST_USE->value]))
         );
     }
 
@@ -61,12 +61,12 @@ final class MariaDbUserRepository implements UserRepositoryContract
 
         foreach ($data as $user) {
             $results[] = [
-                'uuid' => $user[UserEnum::UUID],
-                'name' => $user[UserEnum::NAME],
-                'email' => $user[UserEnum::EMAIL],
-                'password' => $user[UserEnum::PASSWORD],
-                'createdAt' => $user[UserEnum::CREATED_AT],
-                'lastUse' => $user[UserEnum::LAST_USE]
+                'uuid' => $user[UserEnum::UUID->value],
+                'name' => $user[UserEnum::NAME->value],
+                'email' => $user[UserEnum::EMAIL->value],
+                'password' => $user[UserEnum::PASSWORD->value],
+                'createdAt' => $user[UserEnum::CREATED_AT->value],
+                'lastUse' => $user[UserEnum::LAST_USE->value],
             ];
         }
 

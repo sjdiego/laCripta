@@ -6,7 +6,7 @@ namespace App\Domains\Vault\Infrastructure\Hashing;
 
 use App\Domains\Vault\Domain\Contracts\PasswordHashingContract;
 
-final class PasswordDefaultHashing implements PasswordHashingContract
+class PasswordDefaultHashing implements PasswordHashingContract
 {
     public function hash(string $password): string
     {
