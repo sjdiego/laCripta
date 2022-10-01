@@ -3,12 +3,19 @@
 ### User authentication and password storing project using Domain Driven Design
 
 ![docker](https://img.shields.io/badge/Docker-compose-brightgreen.svg)
-![nginx](https://img.shields.io/badge/nginx-on_apline-brightgreen.svg)
-![php](https://img.shields.io/badge/PHP_FPM-8.1.4-brightgreen.svg)
-![xdebug](https://img.shields.io/badge/Xdebug-3-brightgreen.svg)
-![mariadb](https://img.shields.io/badge/MariaDB-10.7.3-brightgreen.svg)
+![php](https://img.shields.io/badge/PHP_FPM-8.1.10-brightgreen.svg)
 
 Requests are handled through Symfony with endpoints declared in
-`/app/config/routes.yaml` and handled via controllers of `/app/src/Controller`.
+`/app/config/routes.yaml` and controllers of `/app/src/Controller`.
 
 Domain and context code is stored in `/app/src/Vault` folder.
+
+### How to use
+Run the following commands:
+- `docker compose build`
+- `docker compose run app composer install`
+- `docker compose up`
+
+### How to test (Docker)
+Run the following command:
+- `docker compose run app php bin/phpunit --textdox`
