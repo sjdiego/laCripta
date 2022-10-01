@@ -15,6 +15,7 @@ Run the following commands:
 - `docker compose build`
 - `docker compose run app composer install`
 - `docker compose up`
+- `docker compose run app php bin/console doctrine:migrations:migrate`
 
 ### How to test (Docker)
 Run the following command:

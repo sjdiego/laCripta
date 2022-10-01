@@ -13,20 +13,17 @@ services:
     environment:
       APP_DEBUG: 'true'
 
-  # Database
-  # mariadb:
-  #   image: "mariadb:10.7.3"
-  #   restart: always
-  #   working_dir: /app
-  #   volumes:
-  #     - "./app:/app"
-  #     - "./docker/mariadb/data:/var/lib/mysql"
-  #     - "./docker/mariadb/logs:/var/log/mysql"
-  #     - "./docker/mariadb/conf:/etc/mysql"
-  #  environment:
-  #     MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
-  #     MARIADB_DATABASE: "${MARIADB_DATABASE}"
-  #     MARIADB_USER: "${MARIADB_USER}"
-  #     MARIADB_PASSWORD: "${MARIADB_PASSWORD}"
-  #  ports:
-  #     - 3306:3306
+  mariadb:
+    image: "mariadb:jammy"
+    volumes:
+      - "./app:/app"
+      - "./docker/mariadb/data:/var/lib/mysql"
+      - "./docker/mariadb/logs:/var/log/mysql"
+      - "./docker/mariadb/conf:/etc/mysql"
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: "${MARIADB_ROOT_PASSWORD}"
+      MARIADB_DATABASE: "${MARIADB_DATABASE}"
+      MARIADB_USER: "${MARIADB_USER}"
+      MARIADB_PASSWORD: "${MARIADB_PASSWORD}"

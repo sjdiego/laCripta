@@ -30,7 +30,7 @@ class MariaDbUserRepository implements UserRepositoryContract
     public function find(string $uuid): User
     {
         $data = $this->connection->fetchAssociative(
-            'SELECT * FROM users WHERE uuid = :uuid',
+            'SELECT * FROM user WHERE uuid = :uuid',
             ['uuid' => $uuid]
         );
 
@@ -57,7 +57,7 @@ class MariaDbUserRepository implements UserRepositoryContract
     {
         $results = [];
 
-        $data = $this->connection->fetchAllAssociative('SELECT * FROM users');
+        $data = $this->connection->fetchAllAssociative('SELECT * FROM user');
 
         foreach ($data as $user) {
             $results[] = [
@@ -82,13 +82,13 @@ class MariaDbUserRepository implements UserRepositoryContract
     public function create(User $user): bool
     {
         return $this->connection->transactional(function () use ($user): bool {
-            return 1 === $this->connection->insert('users', [
-                UserEnum::UUID       => $user->getName()->value(),
-                UserEnum::NAME       => $user->getEmail()->value(),
-                UserEnum::EMAIL      => $user->getPassword()->value(),
-                UserEnum::PASSWORD   => $user->getCreatedAt()->value()->format('Y-m-d H:i:s'),
-                UserEnum::CREATED_AT => $user->getLastUse()->value()->format('Y-m-d H:i:s'),
-                UserEnum::LAST_USE   => $user->getUUID()->value(),
+            return 1 === $this->connection->insert('user', [
+                UserEnum::NAME->value => $user->getName()->value(),
+                UserEnum::EMAIL->value => $user->getEmail()->value(),
+                UserEnum::PASSWORD->value => $user->getPassword()->value(),
+                UserEnum::CREATED_AT->value => $user->getCreatedAt()->value()->format('Y-m-d H:i:s'),
+                UserEnum::LAST_USE->value => $user->getLastUse()->value()->format('Y-m-d H:i:s'),
+                UserEnum::UUID->value => $user->getUUID()->value(),
             ]);
         });
     }
