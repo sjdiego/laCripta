@@ -27,12 +27,12 @@ final class ListUserUseCase
 
         foreach ($records as $record) {
             $users[] = new User(
-                new UserUUID($record['uuid']),
-                new UserName($record['name']),
-                new UserEmail($record['email']),
-                new UserPassword($record['password']),
-                new UserCreatedAt(new DateTimeImmutable($record['createdAt'])),
-                new UserLastUse(new DateTimeImmutable($record['lastUse']))
+                uuid: new UserUUID($record['uuid']),
+                name: new UserName($record['name']),
+                email: new UserEmail($record['email']),
+                password: new UserPassword($record['password']),
+                createdAt: new UserCreatedAt(new DateTimeImmutable($record['createdAt'])),
+                lastUse: new UserLastUse(new DateTimeImmutable($record['lastUse']))
             );
         }
 
