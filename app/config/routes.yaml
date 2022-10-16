@@ -26,3 +26,8 @@ delete-user:
     path: /user/{uuid}/delete
     controller: App\Controller\DeleteUserController
     methods: DELETE
+
+check-password:
+    path: /user/{uuid}/check-password
+    controller: App\Controller\CheckUserPasswordController
+    methods: POST
