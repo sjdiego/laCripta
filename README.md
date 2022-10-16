@@ -1,14 +1,15 @@
 # La Cripta
 
-### User authentication and password storing project using Domain Driven Design
+### User authentication and password storing project following Domain Driven Design principles
 
 ![docker](https://img.shields.io/badge/Docker-compose-brightgreen.svg)
 ![php](https://img.shields.io/badge/PHP_FPM-8.1.10-brightgreen.svg)
+![server](https://img.shields.io/badge/server-roadrunner-blue)
 
-Requests are handled through Symfony with endpoints declared in
+Requests are handled using Symfony framework through endpoints declared in
 `/app/config/routes.yaml` and controllers of `/app/src/Controller`.
 
-Domain and context code is stored in `/app/src/Vault` folder.
+Domain and context code is stored in `/app/src/Domains/Vault` folder.
 
 ### How to use
 Run the following commands:
