@@ -30,12 +30,12 @@ final class CreateUserUseCase
         $hashedPassword = $this->passwordHashing->hash($password);
 
         $user = new User(
-            new UserUUID($uuid),
-            new UserName($name),
-            new UserEmail($email),
-            new UserPassword($hashedPassword),
-            new UserCreatedAt(new \DateTimeImmutable()),
-            new UserLastUse(new \DateTimeImmutable())
+            uuid: new UserUUID($uuid),
+            name: new UserName($name),
+            email: new UserEmail($email),
+            password: new UserPassword($hashedPassword),
+            createdAt: new UserCreatedAt(new \DateTimeImmutable()),
+            lastUse: new UserLastUse(new \DateTimeImmutable())
         );
 
         $this->userRepository->create($user);

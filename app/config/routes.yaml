@@ -16,3 +16,13 @@ user-create:
     path: /user/create
     controller: App\Controller\CreateUserController
     methods: POST
+
+update-user:
+    path: /user/{uuid}/update
+    controller: App\Controller\UpdateUserController
+    methods: PATCH
+
+delete-user:
+    path: /user/{uuid}/delete
+    controller: App\Controller\DeleteUserController
+    methods: DELETE

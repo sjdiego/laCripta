@@ -31,7 +31,7 @@ class MariaDbUserRepository implements UserRepositoryContract
     {
         $data = $this->connection->fetchAssociative(
             'SELECT * FROM user WHERE uuid = :uuid',
-            ['uuid' => $uuid]
+            [UserEnum::UUID->value => $uuid]
         );
 
         if (false === $data) {
@@ -61,12 +61,12 @@ class MariaDbUserRepository implements UserRepositoryContract
 
         foreach ($data as $user) {
             $results[] = [
-                'uuid' => $user[UserEnum::UUID->value],
-                'name' => $user[UserEnum::NAME->value],
-                'email' => $user[UserEnum::EMAIL->value],
-                'password' => $user[UserEnum::PASSWORD->value],
-                'createdAt' => $user[UserEnum::CREATED_AT->value],
-                'lastUse' => $user[UserEnum::LAST_USE->value],
+                UserEnum::UUID->value       => $user[UserEnum::UUID->value],
+                UserEnum::NAME->value       => $user[UserEnum::NAME->value],
+                UserEnum::EMAIL->value      => $user[UserEnum::EMAIL->value],
+                UserEnum::PASSWORD->value   => $user[UserEnum::PASSWORD->value],
+                UserEnum::CREATED_AT->value => $user[UserEnum::CREATED_AT->value],
+                UserEnum::LAST_USE->value   => $user[UserEnum::LAST_USE->value],
             ];
         }
 
@@ -95,11 +95,31 @@ class MariaDbUserRepository implements UserRepositoryContract
 
     public function update(User $user): bool
     {
-        return true;
+        return $this->connection->transactional(function () use ($user): bool {
+            return 1 === $this->connection->update(
+                // Table
+                'user',
+                // Data
+                [
+                    UserEnum::NAME->value => $user->getName()->value(),
+                    UserEnum::EMAIL->value => $user->getEmail()->value(),
+                    UserEnum::PASSWORD->value => $user->getPassword()->value(),
+                    UserEnum::LAST_USE->value => $user->getLastUse()->value()->format('Y-m-d H:i:s'),
+                ],
+                // Criteria
+                [
+                    UserEnum::UUID->value => $user->getUUID()->value(),
+                ],
+            );
+        });
     }
 
     public function delete(User $user): bool
     {
-        return true;
+        return $this->connection->transactional(function () use ($user): bool {
+            return 1 === $this->connection->delete('user', [
+                UserEnum::UUID->value => $user->getUUID()->value(),
+            ]);
+        });
     }
 }
