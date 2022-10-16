@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\Vault\Domain\ValueObjects;
 
-final class UserCreatedAt
+class UserCreatedAt
 {
     public function __construct(private \DateTimeImmutable $createdAt)
     {

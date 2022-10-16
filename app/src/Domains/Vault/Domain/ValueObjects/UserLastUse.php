@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domains\Vault\Domain\ValueObjects;
 
-final class UserLastUse
+class UserLastUse
 {
     public function __construct(private \DateTimeImmutable $lastUse)
     {

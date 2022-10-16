@@ -6,7 +6,7 @@ namespace App\Domains\Vault\Domain\ValueObjects;
 
 use App\Domains\Vault\Application\ValidateUserPasswordUseCase;
 
-final class UserPassword
+class UserPassword
 {
     public function __construct(private string $password)
     {

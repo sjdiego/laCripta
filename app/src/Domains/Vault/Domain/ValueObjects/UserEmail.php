@@ -6,7 +6,7 @@ namespace App\Domains\Vault\Domain\ValueObjects;
 
 use App\Domains\Vault\Domain\Exceptions\EmailInvalidException;
 
-final class UserEmail
+class UserEmail
 {
     public function __construct(private string $email)
     {

@@ -33,8 +33,6 @@ final class FindUserTest extends TestCase
             ->onlyMethods(['find'])
             ->getMockForAbstractClass();
 
-        $this->userRepository;
-
         $this->passwordHashing = new PasswordDefaultHashing();
     }
 

@@ -6,7 +6,7 @@ namespace App\Domains\Vault\Domain\ValueObjects;
 
 use App\Domains\Vault\Domain\Exceptions\UUIDPatternException;
 
-final class UserUUID
+class UserUUID
 {
     const UUID_PATTERN = '/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/';
 
